@@ -1,4 +1,9 @@
-﻿namespace XiaBags_Ecommerce;
+﻿using Microsoft.EntityFrameworkCore;
+using XiaBags_Ecommerce.Context;
+using XiaBags_Ecommerce.Repositories;
+using XiaBags_Ecommerce.Repositories.Interfaces;
+
+namespace XiaBags_Ecommerce;
 public class Startup
 {
     public Startup(IConfiguration configuration)
@@ -11,7 +16,18 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddDbContext<AppDbContext>(options =>
+         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         services.AddControllersWithViews();
+
+        services.AddMemoryCache();
+        services.AddSession();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +47,8 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRouting();
+
+        app.UseSession();
 
         app.UseAuthorization();
 
