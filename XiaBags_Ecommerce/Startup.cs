@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using XiaBags_Ecommerce.Context;
+using XiaBags_Ecommerce.Models;
 using XiaBags_Ecommerce.Repositories;
 using XiaBags_Ecommerce.Repositories.Interfaces;
 
@@ -21,8 +22,10 @@ public class Startup
 
         services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
+        services.AddTransient<IOrderRepository, OrderRepository>();
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
 
         services.AddControllersWithViews();
 
@@ -54,6 +57,11 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapControllerRoute(
+                name: "CategoryFilter",
+                pattern: "Product/{action}/{category?}",
+                defaults: new { controller = "Product", action = "List" });
+
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

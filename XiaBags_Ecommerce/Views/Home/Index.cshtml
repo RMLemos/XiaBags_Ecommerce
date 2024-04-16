@@ -1,1 +1,44 @@
-﻿<partial name="_Carousel" />
+﻿@model HomeViewModel
+
+<partial name="_Carousel" />
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <a href="https://localhost:7123/Product/List/Tote%20Bag">
+                <img src="~/images/Tote Bag.jpg" class="img-fluid" alt="..." />
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <a href="https://localhost:7123/Product/List/Clutch%20Bag">
+                <img src="~/images/Clutch Bag.jpg" class="img-fluid" alt="..." />
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <a href="https://localhost:7123/Product/List/Keychains">
+                <img src="~/images/Keychains.jpg" class="img-fluid" alt="..." />
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <h2> Latest Products</h2>
+        <hr />
+        @foreach (var product in Model.LatestProducts)
+        {
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <a href="@Url.Action("Details", "Product", new { productId = product.ProductId })" class="custom-card link-dark links">
+                    <div class="card mb-3 me-5" style="width: 40rem;">
+                        <img src="@Url.Content(product.ImageURL)" />
+                        <div class="card-body">
+                            <h4 class="card-title">@product.Name</h4>
+                            <p class="card-title">@product.Price.ToString("c")</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

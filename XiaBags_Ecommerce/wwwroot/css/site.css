@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*My css*/
+
+.links {
+    text-decoration: none;
+    color: black;
+}
+a.custom-card,
+a.custom-card:hover {
+    color: inherit;
+}
+
+.img-cart {
+    width: 18px;
+}
+
+.img-delete {
+    width: 25px;
+}

@@ -1,0 +1,17 @@
+﻿@model Product
+
+<div class="card mt-4 mb-3" style="max-width: 100%;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Url.Content(Model.ImageURL)" class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title mb-3">@Model.Name</h3>
+                <p class="card-text mb-3">@Model.Description</p>
+                <a asp-controller="Product" asp-action="List" class="btn btn-secondary">All products</a>
+                <a class="btn btn-danger" id="cartButton" asp-controller="ShoppingCart" asp-action="AddItemShoppingCart" asp-route-productId="@Model.ProductId">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>

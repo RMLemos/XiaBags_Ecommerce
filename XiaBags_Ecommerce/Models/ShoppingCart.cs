@@ -46,7 +46,7 @@ namespace XiaBags_Ecommerce.Models
                 {
                     ShoppingCartId = ShoppingCartId,
                     Product = product,
-                    Quantity = 1
+                    Quantity = 1,
                 };
                 _context.ShoppingCartItems.Add(shoppingCartItem);
             }
@@ -84,7 +84,8 @@ namespace XiaBags_Ecommerce.Models
         public List<ShoppingCartItem> GetCartItems()
         {
             return CartItems ??
-                    (CartItems = _context.ShoppingCartItems
+                (CartItems = 
+                    _context.ShoppingCartItems
                     .Where(c => c.ShoppingCartId == ShoppingCartId)
                     .Include(p => p.Product)
                     .ToList());
