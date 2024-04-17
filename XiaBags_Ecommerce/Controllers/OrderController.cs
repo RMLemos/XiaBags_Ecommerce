@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using XiaBags_Ecommerce.Models;
 using XiaBags_Ecommerce.Repositories.Interfaces;
 
@@ -15,12 +16,14 @@ namespace XiaBags_Ecommerce.Controllers
             _shoppingCart = shoppingCart;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Order order)
         {

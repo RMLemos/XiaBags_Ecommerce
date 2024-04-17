@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System;
 using XiaBags_Ecommerce.Context;
 using XiaBags_Ecommerce.Models;
 using XiaBags_Ecommerce.Repositories;
 using XiaBags_Ecommerce.Repositories.Interfaces;
+using XiaBags_Ecommerce.Services;
 
 namespace XiaBags_Ecommerce;
 public class Startup
@@ -19,10 +22,24 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options =>
          options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
         services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();
+        services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial> ();
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin",
+                policy =>
+                {
+                    policy.RequireRole("Admin");
+                });
+        });
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
@@ -34,7 +51,7 @@ public class Startup
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
     {
         if (env.IsDevelopment())
         {
@@ -51,12 +68,20 @@ public class Startup
 
         app.UseRouting();
 
+        seedUserRoleInitial.SeedRoles();
+        seedUserRoleInitial.SeedUsers();
+
         app.UseSession();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
             endpoints.MapControllerRoute(
                 name: "CategoryFilter",
                 pattern: "Product/{action}/{category?}",

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using XiaBags_Ecommerce.Models;
 using XiaBags_Ecommerce.Repositories.Interfaces;
 using XiaBags_Ecommerce.ViewModels;
@@ -28,6 +29,7 @@ namespace XiaBags_Ecommerce.Controllers
             return View(shoppingCartVM);
         }
 
+        [Authorize]
         public IActionResult AddItemShoppingCart(int productId)
         {
             var selectedProduct = _productRepository.Products.FirstOrDefault(p => p.ProductId == productId);
@@ -38,7 +40,8 @@ namespace XiaBags_Ecommerce.Controllers
             return RedirectToAction("Index");
         }
 
-            public IActionResult RemoveItemShoppingCart(int productId)
+        [Authorize]
+        public IActionResult RemoveItemShoppingCart(int productId)
         {
             var selectedProduct = _productRepository.Products.FirstOrDefault(p => p.ProductId == productId);
             if (selectedProduct != null)
