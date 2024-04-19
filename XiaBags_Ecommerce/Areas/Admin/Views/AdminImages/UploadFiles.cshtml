@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "UploadaFiles";
+}
+
+<div class="container-fluid bg-light mb-3 p-5">
+    <img src="~/images/upload.jpg" width="95" height="95" />
+    <div class="container mt-2">
+        @if (ViewData["Error"] != null)
+        {
+            <h4>@ViewData["Error"]</h4>
+        }
+    </div>
+    <div class="container">
+        @if (ViewData["Result"] != null)
+        {
+            <h4>@ViewData["Result"]</h4>
+            <hr />
+            @if (ViewBag.Files != null)
+            {
+                @foreach (string file in ViewBag.Files)
+                {
+                    <p>
+                        @file
+                    </p>
+                }
+            }
+        }
+    </div>
+</div>
+<div class="form-group">
+    <a class="btn btn-outline-dark" asp-controller="AdminImages" asp-action="GetImages">Display Images</a>
+</div>

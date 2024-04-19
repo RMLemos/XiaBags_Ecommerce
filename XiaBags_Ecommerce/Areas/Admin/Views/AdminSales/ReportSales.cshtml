@@ -1,0 +1,87 @@
+﻿@model IEnumerable<XiaBags_Ecommerce.Models.Order>
+
+<div class="container-fluid bg-light p-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="minDate" class="mt-2">From</label>
+                        <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
+                    </div>
+                    <div class="form-group">
+                        <label for="maxDate" class="mt-2">To</label>
+                        <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info mt-2">Filter</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<h2 class="mt-4 mb-5 text-center">Report</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h6 class="panel-title">Total of orders = @Model.Count()</h6>
+        <h6 class="panel-title">Total of products in the order = @Model.Sum(obj => obj.TotalItemsOrder).ToString()</h6>
+        <h6 class="panel-title">Total order value = @Model.Sum(obj => obj.TotalOrder).ToString("c")</h6>
+    </div>
+    <div class="panel-body">
+        <table class="table table-borderless table-striped">
+            <thead>
+                <tr class="success">
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalOrder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalItemsOrder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderSentDate)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalItemsOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderSentDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

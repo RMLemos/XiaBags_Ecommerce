@@ -1,13 +1,11 @@
 ﻿@model Product
 
 <a asp-controler="Product" asp-action="Details" asp-route-productId="@Model.ProductId" class="custom-card link-dark links">
-    <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="card mb-3 me-5" style="width: 26rem;">
-            <img src="@Url.Content(Model.ImageURL)" />
-            <div class="card-body">
-                <h4 class="card-title">@Model.Name</h4>
-                <p class="card-title">@Model.Price.ToString("c")</p>
-            </div>
+    <div class="card mb-3 me-2" style="width: width: 100%;">
+        <img src="@Url.Content(Model.ImageURL)" />
+        <div class="card-body">
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-title">@Model.Price.ToString("c")</p>
         </div>
     </div>
 </a>

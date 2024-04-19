@@ -1,0 +1,47 @@
+﻿<h2 class="mt-4"><strong>Images</strong></h2>
+<hr />
+<table border="0" width="100%">
+    <tr>
+        <td>
+            <form method="post" enctype="multipart/form-data" asp-controller="AdminImages" asp-action="UploadFiles">
+                <div class="form-group">
+                    <div class="col-md-8">
+                    <img src="~/images/upload.jpg" width="55" height="55" class="mb-2" />
+                    </div>
+                    <div class="col-md-8">
+                        <h6>Select one or more files to upload:</h6>
+                        <p>(Files with the same name will be overwritten)</p>
+                        <input type="file" name="files" multiple class="button btn-outline-primary" />
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Send Files" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </td>
+        <td>
+            <form method="post" enctype="multipart/form-data" asp-controller="AdminImages" asp-action="GetImages">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <h6>View Images in Server Folder:</h6>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="View Files on the Server" class="btn btn-secondary" />
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>
+<div class="container">
+    @if (ViewData["Deleted"] != null)
+    {
+        @ViewData["Deleted"]
+    }
+</div>

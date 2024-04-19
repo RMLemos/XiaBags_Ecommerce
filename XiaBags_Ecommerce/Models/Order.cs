@@ -60,12 +60,12 @@ namespace XiaBags_Ecommerce.Models
         public int TotalItemsOrder { get; set; }
 
         [Display(Name = "Date of the order")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.Text)] //Poderia ser datetime
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime OrderDate { get; set; }
 
         [Display(Name = "Order Sent at")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.Text)] //Poderia ser datetime
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime? OrderSentDate { get; set; }
 

@@ -6,7 +6,7 @@ namespace XiaBags_Ecommerce.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         [Area("Admin")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();

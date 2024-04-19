@@ -18,7 +18,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <!--Chats-->
+                    <div class="dropdown">
+                        <a class="nav-link link-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Chart Sales
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminChart" asp-action="YearlySales">Yearly Sales</a></li>
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminChart" asp-action="MonthlySales" asp-route-days="30">Monthly Sales</a></li>
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminChart" asp-action="WeeklySales" asp-route-days="7">Weekly Sales</a></li>
+                        </ul>
+                    </div>
+                    <!--Chats Ends-->
+                    <a class="nav-link links" asp-area="Admin" asp-controller="AdminSales" asp-action="Index">Report Sales</a>
                     <a class="nav-link links" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">Orders</a>
+                    <a class="nav-link links" asp-area="Admin" asp-controller="AdminImages" asp-action="Index">Manage Images</a>
                     <a class="nav-link links" asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">Products</a>
                     <a class="nav-link links" asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">Categories</a>
                     <a class="nav-link links" asp-area="Admin" asp-controller="Admin" asp-action="Index">Home</a>
