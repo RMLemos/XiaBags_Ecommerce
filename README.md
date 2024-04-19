@@ -10,7 +10,7 @@ This project is a functional e-commerce web application in C# and .Net MVC. This
 ![Xia Bags all products page Image](/XiaBags_Ecommerce/wwwroot/images/Products.png)
 
 ### Xia Bags Admin Page
-![Xia Bags Admin page Image](/XiaBags_Ecommerce/wwwroot/images/Adim.png)
+![Xia Bags Admin page Image](/XiaBags_Ecommerce/wwwroot/images/Admin.png)
 
 ### Xia Bags Report Page
 ![Xia Bags report page Image](/XiaBags_Ecommerce/wwwroot/images/Reports.png)
