@@ -28,7 +28,7 @@ namespace XiaBags_Ecommerce.Areas.Admin.Controllers
             }
             if (!maxDate.HasValue)
             {
-                minDate = DateTime.Now;
+                maxDate = DateTime.Now;
             }
 
             ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");

@@ -8,10 +8,11 @@
 
 <div class="container">
     <div class="row">
-        @foreach (var product in Model.Products) {
-           <div class="col-sm-12 col-md-4 col-lg-4">
-               <partial name="_ProductDetails" for="<@product" />
-           </div>
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <partial name="_ProductDetails" for="@product" />
+            </div>
         }
     </div>
 </div>
