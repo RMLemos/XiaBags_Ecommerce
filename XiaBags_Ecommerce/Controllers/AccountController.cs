@@ -39,9 +39,12 @@ namespace XiaBags_Ecommerce.Controllers
                 var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (string.IsNullOrEmpty(loginVM.ReturnUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return Redirect(loginVM.ReturnUrl);
                 }
-                return Redirect(loginVM.ReturnUrl);
             }
             ModelState.AddModelError("", "Failed to login");
             return View(loginVM);
